@@ -35,13 +35,12 @@ function LocateControl( props ) {
         if (panTo !== null){
             map.panTo([panTo.latlong[1], panTo.latlong[0]]);
         }
-    }, [panTo]);
+    }, [panTo]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const locateIconButton = useMemo(
       () => (
         <MyLocationIcon onClick={locateMe} className={classes.locate_icon}/>
-      ), [],
-    );
+      ), [], ); // eslint-disable-line react-hooks/exhaustive-deps
   
     return (
       <div>

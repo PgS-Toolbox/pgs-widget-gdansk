@@ -25,13 +25,11 @@ function PubTransListItem (feature, classes) {
         setState(!state);
     };
 
-    var fetcher = new BusAndTramDetailsFetchAndFormat(setDepartures, {"feature": feature})
-    useEffect(() => {
+    useEffect((fetcher = new BusAndTramDetailsFetchAndFormat(setDepartures, {"feature": feature})) => {
         if (state === true){
             fetcher.getData()
         }
-
-    }, [state])
+    }, [state]) // eslint-disable-line react-hooks/exhaustive-deps
       
     return (
         <div>
@@ -54,11 +52,11 @@ function PubTransListItem (feature, classes) {
               ( <TableContainer>
                 <Table>
                   <TableHead>
-                    <WidgetTableRow data={["Line", "Direction", "Departure"]} style="table_header"/>
+                    <WidgetTableRow data={["Line", "Direction", "Departure"]} className={classes.table_header}/>
                   </TableHead>
                   <TableBody>
                     {departures.properties.departures.map((dep) => (
-                      <WidgetTableRow data={[dep.lineId, dep.destination, dep.departure]} style="table_row"/>
+                      <WidgetTableRow data={[dep.lineId, dep.destination, dep.departure]} className={classes.table_row}/>
                     ))}
                   </TableBody>
                 </Table>

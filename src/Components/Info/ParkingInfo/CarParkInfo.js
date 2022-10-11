@@ -51,8 +51,8 @@ function CarParkInfo (props) {
             <TableContainer>
             <Table>  
                 <TableBody>
-                    <WidgetTableRow data={["Name", nearestCarParkInfo.properties.name]} style="table_row"/>
-                    <WidgetTableRow data={["Free spots", nearestCarParkInfo.properties.occupancy]} style="table_row"/>
+                    <WidgetTableRow data={["Name", nearestCarParkInfo.properties.name]} className={classes.table_row}/>
+                    <WidgetTableRow data={["Free spots", nearestCarParkInfo.properties.occupancy]} className={classes.table_row}/>
                 </TableBody>
             </Table>
             </TableContainer>

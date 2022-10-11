@@ -1,5 +1,5 @@
-import { React, useContext, useEffect, useState} from 'react';
-import { GeoJSON, Popup } from 'react-leaflet';
+import { React, useContext } from 'react';
+import { GeoJSON } from 'react-leaflet';
 import hash from 'object-hash';
 import L from "leaflet";
 

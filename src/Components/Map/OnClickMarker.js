@@ -8,7 +8,7 @@ import {geocodeLocation} from "../../FetchersAndFormatters/fetchersDispatcher";
 function OnClickMarker() {
     const {activePosition, setActivePosition, setActiveAddress} = useContext(ActivePositionContext);
 
-    const map = useMapEvents({
+    useMapEvents({
       click: (e) => {
           setActivePosition(e.latlng);
           geocodeLocation(e.latlng, setActiveAddress)
