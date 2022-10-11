@@ -10,7 +10,7 @@ class OsmFetchAndFormat extends FetchAndFormat {
     };
 
     get_formatted_bbox() {
-        return "54.2749189, 18.4294955, 54.4664485, 18.9502437"
+        return process.env.REACT_APP_VIEWPOINT
     };
 }
 
