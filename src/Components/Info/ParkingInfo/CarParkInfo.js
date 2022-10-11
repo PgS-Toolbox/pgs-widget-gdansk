@@ -13,14 +13,14 @@ import GeoButtons from "../../Buttons/GeoButtons";
 
 import {k_nearest} from "../../../Utils/GeoUtils";
 
-import { CarParkDetailsFetchAndFormat } from "../../../FetchersAndFormatters/osmFetchAndFormat";
+import { newCarParkDetailsFetchAndFormat } from "../../../FetchersAndFormatters/FetchConfig";
 
 import styles from "../../../styles";
 import Heading from "../../Heading";
 
 function getNearestCarParkInfo(carParks, activePosition, setCarParkInfo) {
     const nearest = k_nearest(carParks, activePosition, 1);
-    const featureDetailsFetcher = new CarParkDetailsFetchAndFormat( setCarParkInfo, {"feature": nearest[0].layer.feature} );
+    const featureDetailsFetcher = newCarParkDetailsFetchAndFormat( setCarParkInfo, {"feature": nearest[0].layer.feature} );
     featureDetailsFetcher.getData();
 }
 

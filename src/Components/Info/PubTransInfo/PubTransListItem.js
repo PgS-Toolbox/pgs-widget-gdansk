@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import { LinearProgress } from "@mui/material";
 
-import { BusAndTramDetailsFetchAndFormat } from "../../../FetchersAndFormatters/osmFetchAndFormat";
+import { newBusAndTramDetailsFetchAndFormat } from "../../../FetchersAndFormatters/FetchConfig";
 import FeatureItemText from "../../Lists/FeatureItemText";
 import GeoButtons from "../../Buttons/GeoButtons"
 import styles from "../../../styles";
@@ -25,14 +25,14 @@ function PubTransListItem (feature, classes) {
         setState(!state);
     };
 
-    useEffect((fetcher = new BusAndTramDetailsFetchAndFormat(setDepartures, {"feature": feature})) => {
+    useEffect((fetcher = newBusAndTramDetailsFetchAndFormat(setDepartures, {"feature": feature})) => {
         if (state === true){
             fetcher.getData()
         }
     }, [state]) // eslint-disable-line react-hooks/exhaustive-deps
       
     return (
-        <div>
+        <div >
           <ListItem 
             button
             onClick={() => handleClick()}
@@ -56,7 +56,7 @@ function PubTransListItem (feature, classes) {
                   </TableHead>
                   <TableBody>
                     {departures.properties.departures.map((dep) => (
-                      <WidgetTableRow data={[dep.lineId, dep.destination, dep.departure]} className={classes.table_row}/>
+                      <WidgetTableRow key={dep.lineId} data={[dep.lineId, dep.destination, dep.departure]} className={classes.table_row}/>
                     ))}
                   </TableBody>
                 </Table>

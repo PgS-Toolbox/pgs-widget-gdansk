@@ -1,18 +1,18 @@
 import {useContext, useEffect} from "react"
 
-import { PoisFetchAndFormat, BikeStandFetchAndFormat, 
-         CarParksFetchAndFormat, BusAndTramFetchAndFormat } from "./osmFetchAndFormat";
-
+import {newPoisFetchAndFormat, newCarParksFetchAndFormat, 
+    newBikeStandFetchAndFormat, newBusAndTramFetchAndFormat } from "./FetchConfig";
+        
 import GeoDataContext from "../Contexts/GeoDataContext";
 
 export default function Cronjobs() {
     
     const { setBikeStands, setCarParks, setPois, setBusAndTram } = useContext(GeoDataContext);
 
-    useEffect(( bikeStandFetcher = new BikeStandFetchAndFormat(setBikeStands),
-                carParksFetcher = new CarParksFetchAndFormat(setCarParks),
-                poisFetcher = new PoisFetchAndFormat(setPois),
-                busAndTramFetcher = new BusAndTramFetchAndFormat(setBusAndTram) ) => {
+    useEffect(( bikeStandFetcher = new newBikeStandFetchAndFormat(setBikeStands),
+                carParksFetcher = new newCarParksFetchAndFormat(setCarParks),
+                poisFetcher = newPoisFetchAndFormat(setPois),
+                busAndTramFetcher = new newBusAndTramFetchAndFormat(setBusAndTram) ) => {
         bikeStandFetcher.getData();
         setTimeout(1000);
         carParksFetcher.getData();
