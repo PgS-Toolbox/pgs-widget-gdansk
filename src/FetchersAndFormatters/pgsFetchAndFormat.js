@@ -1,6 +1,6 @@
 import { FetchAndFormat } from "./dataFetchAndFormat";
 
-export class CarParksFetchAndFormat extends FetchAndFormat {
+export class PgsCarParksFetchAndFormat extends FetchAndFormat {
     settings = [{
         "url": "http://" + process.env.REACT_APP_HUB_ADDRESS + "/public/v1/parking_area/",
         "method": "GET",
@@ -8,7 +8,7 @@ export class CarParksFetchAndFormat extends FetchAndFormat {
     }];
 }
 
-export class CarParkDetailsFetchAndFormat extends FetchAndFormat {
+export class PgsCarParkDetailsFetchAndFormat extends FetchAndFormat {
     constructor( setter, aux_data ){
         super(setter, aux_data);
         this.settings = [{
@@ -27,12 +27,3 @@ export class CarParkDetailsFetchAndFormat extends FetchAndFormat {
         });
     };
 }
-
-export class BikeStandFetchAndFormat extends FetchAndFormat {}
-
-export class PoisFetchAndFormat extends FetchAndFormat {}
-
-export class BusAndTramFetchAndFormat extends FetchAndFormat {}
-
-export class BusAndTramDetailsFetchAndFormat extends FetchAndFormat {}
- 

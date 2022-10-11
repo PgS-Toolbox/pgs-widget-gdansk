@@ -2,13 +2,21 @@ import { PoisFetchAndFormat, BikeStandFetchAndFormat,
     CarParksFetchAndFormat, BusAndTramFetchAndFormat,
     CarParkDetailsFetchAndFormat, BusAndTramDetailsFetchAndFormat } from "./osmFetchAndFormat";
 
-export function newCarParksFetchAndFormat(...args){
+import { PgsCarParksFetchAndFormat, PgsCarParkDetailsFetchAndFormat } from "./pgsFetchAndFormat"
 
-    return new CarParksFetchAndFormat(...args);
+export function newCarParksFetchAndFormat(...args){
+    console.log(process.env.REACT_APP_HUB_ADDRESS === "")
+    if (process.env.REACT_APP_HUB_ADDRESS === "") {
+        return new CarParksFetchAndFormat(...args);
+    };
+    return new PgsCarParksFetchAndFormat(...args);
 }
     
 export function newCarParkDetailsFetchAndFormat(...args){
-    return new CarParkDetailsFetchAndFormat(...args);
+    if (process.env.REACT_APP_HUB_ADDRESS === "") {
+        return new CarParkDetailsFetchAndFormat(...args);
+    };
+    return new PgsCarParkDetailsFetchAndFormat(...args);
 }
 
 export function newPoisFetchAndFormat(...args){
