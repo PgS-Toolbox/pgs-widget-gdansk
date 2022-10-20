@@ -1,6 +1,6 @@
 import { PoisFetchAndFormat, BikeStandFetchAndFormat, 
     CarParksFetchAndFormat, BusAndTramFetchAndFormat,
-    CarParkDetailsFetchAndFormat, BusAndTramDetailsFetchAndFormat } from "./osmFetchAndFormat";
+    CarParkDetailsFetchAndFormat, BusAndTramDetailsFetchAndFormat } from "./gdanskFetchAndFormat";
 
 import { PgsCarParksFetchAndFormat, PgsCarParkDetailsFetchAndFormat } from "./pgsFetchAndFormat"
 
