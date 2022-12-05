@@ -5,7 +5,6 @@ import { PoisFetchAndFormat, BikeStandFetchAndFormat,
 import { PgsCarParksFetchAndFormat, PgsCarParkDetailsFetchAndFormat } from "./pgsFetchAndFormat"
 
 export function newCarParksFetchAndFormat(...args){
-    console.log(process.env.REACT_APP_HUB_ADDRESS === "")
     if (process.env.REACT_APP_HUB_ADDRESS === "") {
         return new CarParksFetchAndFormat(...args);
     };

@@ -1,6 +1,8 @@
 import { FetchAndFormat } from "./dataFetchAndFormat";
 import { projectionConverter } from "../Utils/GeoUtils";
 import { getCurrentDay, timeNowPlusHrs } from "../Utils/TimeUtils"
+import { bike_stands } from "../static_data/bike_stands"
+import { pois } from "../static_data/pois"
 
 export class CarParksFetchAndFormat extends FetchAndFormat {
     settings = [{
@@ -59,24 +61,7 @@ export class CarParkDetailsFetchAndFormat extends FetchAndFormat {
 }
 
 export class BikeStandFetchAndFormat extends FetchAndFormat {
-    settings = [
-    {
-        "url": "http://mapa.gdansk.gda.pl/ipg/layer/index?id=parking_rowerowy_maly_zadaszony",
-        "method": "GET",
-        "timeout": 0,
-    },{
-        "url": "http://mapa.gdansk.gda.pl/ipg/layer/index?id=parking_rowerowy_maly",
-        "method": "GET",
-        "timeout": 0,
-    },{
-        "url": "http://mapa.gdansk.gda.pl/ipg/layer/index?id=parking_rowerowy_duzy_zadaszony",
-        "method": "GET",
-        "timeout": 0,
-    },{
-        "url": "http://mapa.gdansk.gda.pl/ipg/layer/index?id=parking_rowerowy_duzy",
-        "method": "GET",
-        "timeout": 0,
-    }];
+    static_data = bike_stands;
 
     formatAndSetData (data, setter, aux_data) {
         var output_data = {
@@ -85,37 +70,27 @@ export class BikeStandFetchAndFormat extends FetchAndFormat {
                 features: []
         };
 
-        data.forEach( d => {
-            d.features.forEach ( feature => {
-                output_data.features.push({
-                    type: "Feature",
-                    properties: {
-                        id: feature.properties.dostep + feature.properties.ID
-                    },
-                    geometry: {
-                        type:  feature.geometry.type,
-                        coordinates: projectionConverter("EPSG:2177", "WGS84", [feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
-                    }  
-                }
-            )
-        })});
+        data.features.forEach ( feature => {
+            output_data.features.push({
+                type: "Feature",
+                properties: {
+                    id: feature.properties.dostep + feature.properties.ID
+                },
+                geometry: {
+                    type:  feature.geometry.type,
+                    coordinates: projectionConverter("EPSG:2177", "WGS84", [feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
+                }  
+            }
+        )
+        });
         setter(output_data) 
     };
 }
 
 
 export class PoisFetchAndFormat extends FetchAndFormat {
-    settings = [{
-        "url": "http://mapa.gdansk.gda.pl/ipg/layer/index?id=kultura",
-        "method": "GET",
-        "timeout": 0,
-    },
-    {
-        "url": "http://mapa.gdansk.gda.pl/ipg/layer/index?id=siedziby_um",
-        "method": "GET",
-        "timeout": 0,
-    }];
-    
+    static_data = pois;
+
     formatAndSetData (data, setter, aux_data) {
         var output_data = {
                 type: "FeatureCollection",

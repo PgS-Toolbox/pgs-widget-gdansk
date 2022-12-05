@@ -18,6 +18,9 @@ export class FetchAndFormat {
                 callback(arrayOfResults, setter, aux_data)
             });
         } 
+        else if (typeof this.static_data !== 'undefined') {
+            callback(this.static_data, setter, aux_data)
+        }
         else {
             callback(null, setter, aux_data)
         }
